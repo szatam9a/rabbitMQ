@@ -24,7 +24,10 @@ public class RabbitConfig {
     Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
     }
-
+    @Bean
+    public Queue myQueue() {
+        return new Queue("myQueue", false);
+    }
 
     @Bean
     TopicExchange exchange() {

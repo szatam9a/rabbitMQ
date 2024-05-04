@@ -19,7 +19,12 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("starting");
-        rabbitTemplate.convertAndSend(RabbitConfig.topicExchangeName,"foo.bar.valami","Hey MR");
-        receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
+        rabbitTemplate.convertAndSend(RabbitConfig.topicExchangeName,"foo.bar.valami","Hey MR ,1");
+        Thread.sleep(10000);
+        rabbitTemplate.convertAndSend(RabbitConfig.topicExchangeName,"foo.bar.valami","Hey MR,1 2");
+        Thread.sleep(10000);
+        rabbitTemplate.convertAndSend(RabbitConfig.topicExchangeName,"foo.bar.valami","Hey MR, 123");
+        Thread.sleep(10000);
+
     }
 }
